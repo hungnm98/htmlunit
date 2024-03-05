@@ -37,6 +37,9 @@ public final class FormEncodingType implements Serializable {
     /** text/plain. */
     public static final FormEncodingType TEXT_PLAIN = new FormEncodingType(MimeType.TEXT_PLAIN);
 
+    public static final FormEncodingType APPLICATION_JSON = new FormEncodingType("application/json");
+
+
     private final String name_;
 
     private FormEncodingType(final String name) {

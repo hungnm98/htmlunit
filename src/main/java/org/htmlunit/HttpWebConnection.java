@@ -364,7 +364,12 @@ public class HttpWebConnection implements WebConnection {
                 }
                 method.setEntity(builder.build());
             }
-            else { // for instance a PUT or PATCH request
+            else if (FormEncodingType.APPLICATION_JSON == webRequest.getEncodingType()) {
+                final String body = webRequest.getRequestBody();
+                if (body != null) {
+                    method.setEntity(new StringEntity(body, ContentType.create(ContentType.APPLICATION_JSON.getMimeType(), charset)));
+                }
+            } else { // for instance a PUT or PATCH request
                 final String body = webRequest.getRequestBody();
                 if (body != null) {
                     method.setEntity(new StringEntity(body, charset));
